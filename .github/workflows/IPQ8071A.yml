@@ -123,9 +123,9 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-      sudo pushd feeds/packages/lang
-      sudo rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-21.02/lang/golang
-      sudo popd
+      run: pushd feeds/packages/lang
+      run: rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-21.02/lang/golang
+      run: popd
       
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
