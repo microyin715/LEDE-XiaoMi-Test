@@ -20,4 +20,4 @@
 sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 # passwall依赖
 sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-rm -rf {*sing-box*,*bypass*,*vssr*,*hysteria*}
+
