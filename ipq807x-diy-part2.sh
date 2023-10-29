@@ -48,9 +48,9 @@ sed -i '/exit 0/i sed -i "s/services/system/g" /usr/lib/lua/luci/controller/cpuf
 
 
 
-# themes添加（svn co 命令意思：指定版本如https://github）
-#git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
-#git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
+#10.themes添加（svn co 命令意思：指定版本如https://github）
+git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
+git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
 #git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
 #git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 # Add luci-theme-argon
@@ -65,7 +65,6 @@ sed -i '/exit 0/i sed -i "s/services/system/g" /usr/lib/lua/luci/controller/cpuf
 
 #添加额外非必须软件包
 #git clone https://github.com/kenzok8/small-package package/small-package
-
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/luci-app-adguardhome
 #git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
 git clone https://github.com/vernesong/OpenClash.git package/OpenClash
