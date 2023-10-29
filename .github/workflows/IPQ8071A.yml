@@ -1,4 +1,4 @@
-name: IPQ8071A
+name: AX3600-LEDE
 
 on:
   repository_dispatch:
