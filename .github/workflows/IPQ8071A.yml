@@ -17,13 +17,13 @@ env:
   FEEDS_CONF: feeds.conf.default
 # 需要编译哪个固件直接把#去除，默认编译AX6固件，一次只编译一个型号！
  
-# AX6
+# AX3600
   CONFIG_FILE: AX3600.config
   DIY_P1_SH: ipq807x-diy-part1.sh
   DIY_P2_SH: ipq807x-diy-part2.sh
   
-# AX3600
-#   CONFIG_FILE: AX3600.config
+# AX6
+#   CONFIG_FILE: AX6.config
 #   DIY_P1_SH: ipq807x-diy-part1.sh
 #  DIY_P2_SH: ipq807x-diy-part2.sh
   
