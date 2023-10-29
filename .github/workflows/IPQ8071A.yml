@@ -128,7 +128,6 @@ jobs:
 
       
      - name: 更新Goleng
-        run: |
         pushd feeds/packages/lang
         rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-21.02/lang/golang
         popd
