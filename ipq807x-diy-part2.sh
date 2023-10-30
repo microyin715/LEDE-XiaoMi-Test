@@ -65,7 +65,7 @@ git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-th
 #git clone https://github.com/kenzok8/small-package package/small-package
 #git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/luci-app-adguardhome
 #git clone https://github.com/garypang13/luci-app-bypass package/luci-app-bypass
-git clone https://github.com/vernesong/OpenClash.git package/OpenClash
+#git clone https://github.com/vernesong/OpenClash.git package/OpenClash
 #git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus
 
 #git clone https://github.com/sirpdboy/luci-app-netdata.git package/luci-app-netdata
