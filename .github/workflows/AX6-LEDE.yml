@@ -27,7 +27,7 @@ env:
   # AX6
   CONFIG_FILE: AX6.config
   DIY_P1_SH: ipq807x-diy-part1.sh
-  DIY_P2_SH: ipq807x-diy-part2.sh
+  DIY_P2_SH: diy-part2_AX6.sh
   
 # AX3600
 # CONFIG_FILE: AX3600.config
