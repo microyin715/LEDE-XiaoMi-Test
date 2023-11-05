@@ -55,3 +55,5 @@ jobs:
       with:
         retain_days: 1
         keep_minimum_runs: 1
+    env:
+    ACTIONS_TRIGGER_PAT: ${{ secrets.ACTIONS_TRIGGER_PAT }}
