@@ -35,8 +35,8 @@ jobs:
       id: cacheHash
       uses: actions/cache@v3
       with:
-        token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
-        event-type: Source Code Update
+        path: .commitHash
+        key: HEAD-${{ steps.getHash.outputs.commitHash }}
 
     - name: Save New Commit Hash
       if: steps.cacheHash.outputs.cache-hit != 'true'
