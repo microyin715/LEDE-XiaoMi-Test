@@ -199,7 +199,7 @@ jobs:
         echo "status=success" >>$GITHUB_OUTPUT
 
      - name: 计算固件MD5
-      run: |
+       run: |
         cd ${{ env.FIRMWARE }} && rm -rf sha256sums
         MD5=$(md5sum * | sed ':a;N;$!ba;s/\n/<br>/g')
         echo "MD5=$MD5" >> $GITHUB_ENV            
