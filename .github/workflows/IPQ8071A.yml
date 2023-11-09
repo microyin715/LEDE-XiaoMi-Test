@@ -182,14 +182,14 @@ jobs:
         rm -rf $(ls . | grep -v "^bin$" | xargs) 2>/dev/null
         df -hT ${PWD}
 
-    - name: Upload bin directory
+    - name: 上传bin
       uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
-    - name: Organize files
+    - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
@@ -197,41 +197,53 @@ jobs:
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >>$GITHUB_OUTPUT
+
+     - name: 计算固件MD5
+      run: |
+        cd ${{ env.FIRMWARE }} && rm -rf sha256sums
+        MD5=$(md5sum * | sed ':a;N;$!ba;s/\n/<br>/g')
+        echo "MD5=$MD5" >> $GITHUB_ENV            
         
-    - name: Upload firmware directory
+    - name: 上传固件
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-    - name: Create release
+    - name: 生成Release标识
+      id: tag
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      run: |
+        echo "release_tag=H3C-NX30Pro-LEDE-$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+        touch release.txt
+         echo "status=success" >>$GITHUB_OUTPUT
+    - name: 发布OpenWrt固件到Releases
       uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: steps.tag.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
-    
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
-        body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
+        name: XiaoMi AX3600 for ${{ env.VER }}
+        tag_name: ${{ steps.tag.outputs.status }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        body: |
+          - 版本号：${{ env.VER }}
+          - 默认IP：192.168.2.1
+          - 默认密码：password
+          - 固件源码:【编译前的最后一次[➦主源码](https://github.com/coolsnowwolf/lede)更新记录】
+          - 下载后请仔细校验MD5，如不正确请重新下载
+          ${{ env.useVersionInfo }}
+      
+          `md5sum`
+          > ${{ env.MD5 }}
 
-    - name: Delete workflow runs
+    - name: 删除工作流
       uses: Mattraks/delete-workflow-runs@v2
       with:
         retain_days: 30
         keep_minimum_runs: 3
 
-    - name: Remove old Releases
+    - name: 删除旧的Realeases
       uses: dev-drprasad/delete-older-releases@v0.3.2
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
