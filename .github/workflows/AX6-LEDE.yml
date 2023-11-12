@@ -81,10 +81,11 @@ jobs:
         echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         echo "DATE1=$(date "+%Y-%m-%d")" >> $GITHUB_ENV
         
-      # 添加红米ax6  AX3600编译选项
-    - name: Xiaomi support
+      # 添加红米ax6编译选项
+    - name: Redmi ax6 support
       run: |
-        cat $GITHUB_WORKSPACE/generic.mk >> openwrt/target/linux/ipq807x/image/generic.mk
+         cat $GITHUB_WORKSPACE/ax6/generic.mk >> openwrt/target/linux/ipq807x/image/generic.mk
+        
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
