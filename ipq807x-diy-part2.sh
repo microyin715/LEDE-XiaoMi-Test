@@ -87,3 +87,9 @@ git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-th
 #git clone https://github.com/pymumu/openwrt-smartdns package/smartdns
 #git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 #git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
+
+# 移除要替换的包
+rm -rf feeds/packages/net/mosdns
+rm -rf feeds/luci/applications/luci-app-mosdns
+#添加mosdns
+git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
